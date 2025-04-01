@@ -9,6 +9,8 @@ public class Tower : MonoBehaviour
     public GameObject projectilePrefab; // Projectile prefab
     public Transform firePoint;       // Where bullets spawn
 
+    public bool disablefire = true;
+
     private float fireCountdown = 0f;
     private Transform target;
 
@@ -57,11 +59,15 @@ public class Tower : MonoBehaviour
 
     void Shoot()
     {
-        GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        Projectile projectile = projectileGO.GetComponent<Projectile>();
-        if (projectile != null)
+        if (disablefire == false)
         {
-            projectile.Seek(target);
+
+            GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+            Projectile projectile = projectileGO.GetComponent<Projectile>();
+            if (projectile != null)
+            {
+                projectile.Seek(target);
+            }
         }
     }
 
