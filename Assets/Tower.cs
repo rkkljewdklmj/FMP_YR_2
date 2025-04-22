@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,9 @@ public class Tower : MonoBehaviour
     public Transform firePoint;       // Where bullets spawn
 
     public bool disablefire = true;
+
+    [Header("Tower Cost")]
+    public int cost = 50;  // 💰 Set cost in Inspector per tower prefab
 
     private float fireCountdown = 0f;
     private Transform target;
@@ -59,9 +62,8 @@ public class Tower : MonoBehaviour
 
     void Shoot()
     {
-        if (disablefire == false)
+        if (!disablefire)
         {
-
             GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
             Projectile projectile = projectileGO.GetComponent<Projectile>();
             if (projectile != null)

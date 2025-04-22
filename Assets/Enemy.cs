@@ -12,7 +12,7 @@ using UnityEngine;
             if (GameManager.Instance != null)
             {
                 // Access GameManager methods or variables
-                GameManager.Instance.AddMoney(10);
+                
                 //Debug.Log(GameManager.Instance.someVariable);
             }
             else
@@ -36,7 +36,7 @@ using UnityEngine;
         {
             if (GameManager.Instance != null)
             {
-                GameManager.Instance.AddMoney(moneyReward);
+               
             }
         }
         void Die()

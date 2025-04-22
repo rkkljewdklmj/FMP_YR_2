@@ -40,6 +40,7 @@ public class PlaceTowers : MonoBehaviour
             SetGhostColor(isValid);
         }
 
+
         // Place tower on click
         if (Input.GetMouseButtonDown(0) && ghostTower != null)
         {
@@ -56,6 +57,28 @@ public class PlaceTowers : MonoBehaviour
                     PlaceTower(towerToPlace, placePosition);
                 }
             }
+        }
+    }
+    public void TryPlaceTower(GameObject towerPrefab)
+    {
+        Tower towerScript = towerPrefab.GetComponent<Tower>();
+        if (towerScript == null)
+        {
+            Debug.LogError("No Tower script found on prefab!");
+            return;
+        }
+
+        int towerCost = towerScript.cost;
+
+        if (MoneySystem.Instance.CanAfford(towerCost))
+        {
+            Vector3 position = GetPlacementPosition();  // Replace with your actual placement logic
+            placeTowers.PlaceTower(towerPrefab, position);
+            MoneySystem.Instance.SubtractMoney(towerCost);  // Subtract the money when placing the tower
+        }
+        else
+        {
+            Debug.Log("Not enough money to place tower!");
         }
     }
 

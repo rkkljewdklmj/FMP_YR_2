@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1943600629717313131}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.216966, y: 0.5, z: 24.867723}
+  m_LocalPosition: {x: -23.660997, y: 0.5, z: -5.630043}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -128,6 +128,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6103828608367046881, guid: 3e451763a2a23bf4481a138e5b8ea0ea, type: 3}
   firePoint: {fileID: 8674398858089355577}
   disablefire: 1
+  cost: 50
 --- !u!135 &2155089988391612552
 SphereCollider:
   m_ObjectHideFlags: 0

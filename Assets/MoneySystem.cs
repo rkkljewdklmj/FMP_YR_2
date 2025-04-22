@@ -2,39 +2,40 @@ using UnityEngine;
 
 public class MoneySystem : MonoBehaviour
 {
-    private GameManager gameManager;
-    private int startingMoney = gameManager.startingMoney;
-    private int currentMoney;
+    public static MoneySystem Instance { get; private set; }
 
-    void Start()
-    {
-        // Set starting money when the game starts
-        gameManager.SpendMoney
-    }
+    [SerializeField] private int startingMoney = 100;
+    public int CurrentMoney { get; private set; }
 
-    // Check if the player can afford a tower
-    public bool CanAfford(int cost)
+    private void Awake()
     {
-        return currentMoney >= cost;
-    }
-
-    // Subtract money when the player places a tower
-    public void SubtractMoney(int cost)
-    {
-        if (CanAfford(cost))
+        if (Instance == null)
         {
-            currentMoney -= cost;
-            Debug.Log("Money deducted: " + cost);
+            Instance = this;
         }
         else
         {
-            Debug.Log("Not enough money!");
+            Destroy(gameObject);
+            return;
         }
+
+        CurrentMoney = startingMoney;
     }
 
-    // Get the current amount of money
-    public int GetCurrentMoney()
+    public bool CanAfford(int amount)
     {
-        return currentMoney;
+        return CurrentMoney >= amount;
+    }
+
+    public void SubtractMoney(int amount)
+    {
+        CurrentMoney -= amount;
+        MoneyUIUpdater.Instance?.UpdateMoneyUI(CurrentMoney);
+    }
+
+    public void AddMoney(int amount)
+    {
+        CurrentMoney += amount;
+        MoneyUIUpdater.Instance?.UpdateMoneyUI(CurrentMoney);
     }
 }

@@ -1,18 +1,31 @@
-using UnityEngine;
-
+﻿using UnityEngine;
 
 public class TowerPlacer : MonoBehaviour
 {
     [SerializeField] private PlaceTowers placeTowers;
-    [SerializeField] private MoneySystem moneySystem; // Reference to the MoneySystem
+    [SerializeField] private GameObject towerPrefab;
+    [SerializeField] private int towerCost = 50; // You can change this per tower
 
-    public void TryPlaceTower(GameObject towerPrefab, int cost)
+    private MoneySystem moneySystem;
+
+    private void Start()
     {
-        if (moneySystem.CanAfford(cost)) // Check if the player has enough money
+        moneySystem = GameManager.Instance.moneySystem;
+    }
+
+    public void TryPlaceTower()
+    {
+        if (moneySystem == null)
         {
-            Vector3 position = GetPlacementPosition(); // Get valid position
-            placeTowers.PlaceTower(towerPrefab, position); // Call PlaceTower method
-            moneySystem.SubtractMoney(cost); // Subtract cost
+            Debug.LogError("MoneySystem reference not found.");
+            return;
+        }
+
+        if (moneySystem.CanAfford(towerCost))
+        {
+            Vector3 position = GetPlacementPosition(); // You can modify this logic
+            placeTowers.PlaceTower(towerPrefab, position);
+            moneySystem.SubtractMoney(towerCost);
         }
         else
         {
@@ -22,8 +35,7 @@ public class TowerPlacer : MonoBehaviour
 
     private Vector3 GetPlacementPosition()
     {
-        // Implement logic to determine where the tower should be placed.
-        // Placeholder: Return a fixed position for now.
+        // Placeholder logic — replace with real placement logic if needed
         return new Vector3(0, 0.5f, 0);
     }
 }
