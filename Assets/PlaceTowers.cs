@@ -7,6 +7,8 @@ public class PlaceTowers : MonoBehaviour
     [SerializeField] LayerMask unplaceableLayer; // Blocked layers (towers and paths)
     [SerializeField] float towerRadius = 1f;
     [SerializeField] float towerRange = 5f;
+    [SerializeField] private PlaceTowers placeTowers;       // Reference to your PlaceTowers script
+    [SerializeField] private MoneySystem moneySystem;
 
     [SerializeField] private GameObject ghostTower;
     private GameObject towerToPlace;
@@ -61,20 +63,30 @@ public class PlaceTowers : MonoBehaviour
     }
     public void TryPlaceTower(GameObject towerPrefab)
     {
-        Tower towerScript = towerPrefab.GetComponent<Tower>();
-        if (towerScript == null)
+        MonoBehaviour towerScript = towerPrefab.GetComponent<MonoBehaviour>();
+
+        int towerCost = 0;
+
+        // Try to get a cost from Tower or TowerTwo
+        if (towerPrefab.GetComponent<Tower>() != null)
         {
-            Debug.LogError("No Tower script found on prefab!");
+            towerCost = towerPrefab.GetComponent<Tower>().cost;
+        }
+        else if (towerPrefab.GetComponent<TowerTwo>() != null)
+        {
+            towerCost = towerPrefab.GetComponent<TowerTwo>().cost;
+        }
+        else
+        {
+            Debug.LogError("Tower prefab does not have a recognized Tower script.");
             return;
         }
 
-        int towerCost = towerScript.cost;
-
         if (MoneySystem.Instance.CanAfford(towerCost))
         {
-            Vector3 position = GetPlacementPosition();  // Replace with your actual placement logic
+            Vector3 position = GetPlacementPosition();
             placeTowers.PlaceTower(towerPrefab, position);
-            MoneySystem.Instance.SubtractMoney(towerCost);  // Subtract the money when placing the tower
+            MoneySystem.Instance.SubtractMoney(towerCost);
         }
         else
         {
@@ -82,35 +94,46 @@ public class PlaceTowers : MonoBehaviour
         }
     }
 
+    private Vector3 GetPlacementPosition()
+    {
+        // You must replace this with your real placement logic
+        // For now, this is just a placeholder
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            return new Vector3(hit.point.x, 0.5f, hit.point.z); // Adjust Y as needed
+        }
 
-    public void PlaceTower(GameObject towerToPlace, Vector3 placePosition) {
-
-                    // Place the tower at the valid position
-                    GameObject instantiatedTower = Instantiate(towerToPlace, placePosition, Quaternion.identity);
-
-                // Reference the Tower script on the instantiated object
-                Tower towerScript = instantiatedTower.GetComponent<Tower>();
-
-                //Debug.Log("tower");
-
-                if (towerScript != null)
-                {
-                    // Disable the fire functionality
-                    towerScript.disablefire = false;
-                }
+        return Vector3.zero; // Default if raycast fails
+    }
 
 
-            // Destroy the ghost and range indicator after placement
-            Destroy(ghostTower);
-            Destroy(rangeIndicator);
+    public void PlaceTower(GameObject towerToPlace, Vector3 placePosition)
+    {
+        GameObject instantiatedTower = Instantiate(towerToPlace, placePosition, Quaternion.identity);
 
-            ghostTower = null;
-            towerToPlace = null;
+        Tower towerScript = instantiatedTower.GetComponent<Tower>();
+        if (towerScript != null)
+        {
+            towerScript.disablefire = false;
+        }
 
-}
+        TowerTwo towerTwoScript = instantiatedTower.GetComponent<TowerTwo>();
+        if (towerTwoScript != null)
+        {
+            towerTwoScript.disablefire = false;
+        }
+
+        Destroy(ghostTower);
+        Destroy(rangeIndicator);
+
+        ghostTower = null;
+        this.towerToPlace = null;
+    }
 
 
-public void SelectTowerFromButton(GameObject towerPrefab)
+
+    public void SelectTowerFromButton(GameObject towerPrefab)
     {
         float defaultRange = 5f;
         SelectTower(towerPrefab, defaultRange);

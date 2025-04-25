@@ -167,7 +167,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.5
+  m_VoxelSize: 0.46666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 586cd5f78cbd5464f81b71215c2cfa23, type: 2}
   m_BuildHeightMesh: 0
@@ -809,7 +809,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.5
+  m_VoxelSize: 0.46666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 2ef3f0c078540a247b4c27b4d47ebcca, type: 2}
   m_BuildHeightMesh: 0
@@ -944,7 +944,7 @@ Transform:
   m_GameObject: {fileID: 966279996}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -18.02, y: 1.81, z: 23.912}
+  m_LocalPosition: {x: -18.02, y: 1.81, z: 22.845}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1336,7 +1336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placeTowers: {fileID: 2036657862}
-  towerPrefab: {fileID: 0}
+  towerPrefab: {fileID: 1943600629717313131, guid: 0f691dc71683dba48b99103ad07897da, type: 3}
   towerCost: 50
 --- !u!1 &1405706457
 GameObject:
@@ -1386,7 +1386,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.5
+  m_VoxelSize: 0.46666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 991b4383c1f9b9c4a9dbe968018b7d51, type: 2}
   m_BuildHeightMesh: 0
@@ -1728,7 +1728,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.5
+  m_VoxelSize: 0.46666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 05d3dc1a66b54cc46bf223d379e2361c, type: 2}
   m_BuildHeightMesh: 0
@@ -1869,7 +1869,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.5
+  m_VoxelSize: 0.46666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 9474c69ecd1c1ee47a1aa06583977715, type: 2}
   m_BuildHeightMesh: 0
@@ -2003,6 +2003,8 @@ MonoBehaviour:
     m_Bits: 264
   towerRadius: 1
   towerRange: 5
+  placeTowers: {fileID: 2036657862}
+  moneySystem: {fileID: 2036657866}
   ghostTower: {fileID: 1943600629717313131, guid: 78928d6418d5fa44291ff77477afa3e5, type: 3}
 --- !u!4 &2036657863
 Transform:
@@ -2149,6 +2151,7 @@ GameObject:
   - component: {fileID: 2072258261}
   - component: {fileID: 2072258260}
   - component: {fileID: 2072258259}
+  - component: {fileID: 2072258262}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -2218,7 +2221,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2072258260}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2036657862}
+        m_TargetAssemblyTypeName: PlaceTowers, Assembly-CSharp
+        m_MethodName: SelectTowerFromButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 3089910327202366941, guid: 0a79a7ac1d563d04fa39922a9f0d2e40, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2072258260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2257,6 +2272,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072258257}
   m_CullTransparentMesh: 1
+--- !u!114 &2072258262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072258257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0500f316c35164b9fecd3afc467e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeTowers: {fileID: 2036657862}
+  towerPrefab: {fileID: 3089910327202366941, guid: 0a79a7ac1d563d04fa39922a9f0d2e40, type: 3}
+  towerCost: 50
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

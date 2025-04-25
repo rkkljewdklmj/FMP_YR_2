@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public float range = 10f;         // Tower shooting range
-    public float fireRate = 1f;       // Time between shots
-    public GameObject projectilePrefab; // Projectile prefab
-    public Transform firePoint;       // Where bullets spawn
+    public float range = 10f;               // Tower shooting range
+    public float fireRate = 1f;             // Time between shots
+    public GameObject projectilePrefab;     // Projectile prefab
+    public Transform firePoint;             // Where bullets spawn
 
     public bool disablefire = true;
 
     [Header("Tower Cost")]
-    public int cost = 50;  // 💰 Set cost in Inspector per tower prefab
+    public int cost = 50;                   // 💰 Set cost in Inspector per tower prefab
+
+    [Header("Tower Behavior")]
+    [SerializeField] public bool rotateTowardsTarget = true; // 🔁 Enable/disable tower rotation
 
     private float fireCountdown = 0f;
     private Transform target;
@@ -23,7 +26,11 @@ public class Tower : MonoBehaviour
 
         if (target != null)
         {
-            RotateTowardsTarget(); // Aim at enemy
+            if (rotateTowardsTarget)
+            {
+                RotateTowardsTarget(); // Aim at enemy only if enabled
+            }
+
             if (fireCountdown <= 0f)
             {
                 Shoot();
@@ -68,7 +75,7 @@ public class Tower : MonoBehaviour
             Projectile projectile = projectileGO.GetComponent<Projectile>();
             if (projectile != null)
             {
-                projectile.Seek(target);
+                
             }
         }
     }
