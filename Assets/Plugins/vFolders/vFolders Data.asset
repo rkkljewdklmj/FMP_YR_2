@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb9c12a8c6c949f7af83a3d238359d0, type: 3}
+  m_Name: vFolders Data
+  m_EditorClassIdentifier: 
+  folderDatas_byGuid:
+    keys:
+    - 2d70c3ef54b6994439429895fa782726
+    - acc129589dbdd4648a86c7d3b1c7f726
+    - 709f11a7f3c4041caa4ef136ea32d874
+    - 745f0fbbd1e677846a798087ab33c5f2
+    - 9c53962885c2c4f449125a979d6ad240
+    - b91dc5c83c444ca4b81030e20a7293f5
+    - a0e4cc4c67193494a9f76bb0373170a8
+    - f54d1bd14bd3ca042bd867b519fee8cc
+    - ba062aa6c92b140379dbc06b43dd3b9b
+    values:
+    - colorIndex: 7
+      iconNameOrGuid: Rigidbody Icon
+    - colorIndex: 10
+      iconNameOrGuid: Settings Icon
+    - colorIndex: 10
+      iconNameOrGuid: Settings Icon
+    - colorIndex: 7
+      iconNameOrGuid: 
+    - colorIndex: 7
+      iconNameOrGuid: 
+    - colorIndex: 7
+      iconNameOrGuid: PrefabModel Icon
+    - colorIndex: 7
+      iconNameOrGuid: RawImage Icon
+    - colorIndex: 10
+      iconNameOrGuid: Font Icon
+    - colorIndex: 0
+      iconNameOrGuid: Light Icon
