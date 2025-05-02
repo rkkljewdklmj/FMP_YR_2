@@ -36,6 +36,6 @@ public class TowerPlacer : MonoBehaviour
     private Vector3 GetPlacementPosition()
     {
         // Placeholder logic — replace with real placement logic if needed
-        return new Vector3(0, 0.5f, 0);
+        return new Vector3(0, 2.2f, 0);
     }
 }

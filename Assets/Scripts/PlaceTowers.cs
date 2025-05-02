@@ -28,7 +28,7 @@ public class PlaceTowers : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, placeableLayer))
         {
             Vector3 placePosition = hit.point;
-            placePosition.y = 0.5f; // Adjust the height as needed
+            placePosition.y = 2.2f; // Adjust the height as needed
             ghostTower.transform.position = placePosition;
 
             // Redraw the line renderer to match the position of the ghost tower
@@ -101,7 +101,7 @@ public class PlaceTowers : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            return new Vector3(hit.point.x, 0.5f, hit.point.z); // Adjust Y as needed
+            return new Vector3(hit.point.x,2.2f, hit.point.z); // Adjust Y as needed
         }
 
         return Vector3.zero; // Default if raycast fails
