@@ -49,7 +49,7 @@ public class PlaceTowers : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, placeableLayer))
             {
                 Vector3 placePosition = hit.point;
-                placePosition.y = 0.5f;
+                placePosition.y = 2.2f;
 
                 if (!Physics.CheckSphere(placePosition, towerRadius, unplaceableLayer))
                 {

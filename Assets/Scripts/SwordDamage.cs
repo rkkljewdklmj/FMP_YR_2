@@ -16,8 +16,8 @@ public class SwordDamage : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Vector3 spawnPos = new Vector3(firePoint.transform.position.x, 2.2f, firePoint.transform.position.z); // raise by 1 unit
-            Instantiate(swordPrefab, spawnPos, firePoint.transform.rotation);
+            
+           
 
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
